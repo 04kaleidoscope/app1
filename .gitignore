@@ -45,5 +45,10 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
+<<<<<<< HEAD
 /android/app/src/google-services.json
 android/app/src/google-services.json
+=======
+
+android/app/google-services.json
+>>>>>>> awesome

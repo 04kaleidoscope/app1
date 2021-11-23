@@ -17,4 +17,8 @@ samples, guidance on mobile development, and a full API reference.
 Hello!
 
 
+<<<<<<< HEAD
 also workin on a feature
+=======
+working on a feature
+>>>>>>> awesome
