@@ -1,0 +1,119 @@
+import 'dart:math';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  int count = 0;
+
+  @override
+  void initState() {
+    // fetch data from firebase - this inits once at the initialization of ui
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // implement dispose - this is tun when the widget is removed from the ui
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.green,
+          title: const Text('Flutter is fun!'),
+        ),
+        body: ListView.builder(
+          itemBuilder: (_, index) {
+            return Container(
+              color:
+                  Colors.primaries[Random().nextInt(Colors.primaries.length)],
+              width: 500,
+              height: 500,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Button pressed $count times.',
+                    style: TextStyle(fontSize: 30, color: Colors.white),
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => InfoScreen()),
+                        );
+                      },
+                      child: Text('About'))
+                ],
+              ),
+            );
+          },
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () {
+            setState(() {
+              count++;
+            });
+            print('pressed! $count');
+          },
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.business), label: 'Buisness'),
+            BottomNavigationBarItem(icon: Icon(Icons.school), label: 'School'),
+          ],
+        ),
+        drawer: Drawer(
+          child: Text('Yo!'),
+        ),
+      ),
+    );
+  }
+}
+
+class AboutScreen extends StatelessWidget {
+  const AboutScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.red,
+        title: const Text('AboutScreen here'),
+      ),
+    );
+  }
+}
+
+class InfoScreen extends StatelessWidget {
+  const InfoScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.blue,
+          title: const Text('InfoScreen here'),
+        ),
+      ),
+    );
+  }
+}
