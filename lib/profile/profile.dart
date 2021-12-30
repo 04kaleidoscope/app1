@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:app1/services/auth.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({ Key? key }) : super(key: key);
+  const ProfileScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      
+      appBar: AppBar(title: Text('profile')),
+      body: ElevatedButton(
+        child: Text('sign out'),
+        onPressed: () async {
+          await AuthService().signOut();
+          Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);
+        },
+      ),
     );
   }
 }

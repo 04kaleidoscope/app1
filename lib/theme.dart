@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 var appTheme = ThemeData(
 
-  fontFamily: GoogleFonts.nunito().fontFamily,
+  fontFamily: GoogleFonts.sourceCodePro().fontFamily,
 
   brightness: Brightness.dark,
   textTheme: const TextTheme(

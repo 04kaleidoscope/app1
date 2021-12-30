@@ -36,7 +36,7 @@ class _AppState extends State<myApp> {
         if (snapshot.hasError) {
         return const Directionality(
           textDirection: TextDirection.ltr,
-          child: Text('error'),
+          child: Text('unable to connect with firebase'),
           );
         }
 
@@ -51,7 +51,7 @@ class _AppState extends State<myApp> {
         // Otherwise, show something whilst waiting for initialization to complete
         return const Directionality(
           textDirection: TextDirection.ltr,
-          child: Text('loading'),
+          child: Text('loading...'),
           );
       },
     );

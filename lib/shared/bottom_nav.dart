@@ -9,25 +9,28 @@ class BottomNavBar extends StatelessWidget {
     return BottomNavigationBar(
       items: [
         BottomNavigationBarItem(
-          icon: Icon(
-            FontAwesomeIcons.graduationCap,
+          icon: Icon( 
+            FontAwesomeIcons.fire,
             size: 20,
+            color: Colors.redAccent,
           ),
-          label: 'Topics',
+          label: 'firequiz',
         ),
         BottomNavigationBarItem(
           icon: Icon(
-            FontAwesomeIcons.bolt,
+            Icons.code,
             size: 20,
+            color: Colors.orange,
           ),
-          label: 'About',
+          label: 'about',
         ),
         BottomNavigationBarItem(
           icon: Icon(
-            FontAwesomeIcons.userCircle,
+            FontAwesomeIcons.user,
             size: 20,
+            color: Colors.yellow,
           ),
-          label: 'Profile',
+          label: 'profile',
         ),
       ],
       fixedColor: Colors.deepPurple[200],
