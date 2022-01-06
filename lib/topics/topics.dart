@@ -27,8 +27,8 @@ class TopicsScreen extends StatelessWidget {
 
           return Scaffold(
             appBar: AppBar(
-              backgroundColor: Colors.amber.shade800,
-              title: const Text('Products'),
+              backgroundColor: Color(0xFFF57C00),
+              title: const Text('firequiz_'),
             ),
 
             drawer: TopicDrawer(topics: topics),

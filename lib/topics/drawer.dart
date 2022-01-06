@@ -2,44 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:app1/services/models.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-
-
-
-
+import 'package:app1/quiz/quiz.dart';
 
 class TopicDrawer extends StatelessWidget {
   final List<Topic> topics;
-  const TopicDrawer({ Key? key, required this.topics }) : super(key: key);
+  const TopicDrawer({Key? key, required this.topics}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView.separated(
-        shrinkWrap: true,
-        itemCount: topics.length,
-        itemBuilder: (BuildContext context, int idx) {
-          Topic topic = topics[idx];
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 10, left: 10),
-                child: Text(
-                  topic.title,
+        child: ListView.separated(
+      shrinkWrap: true,
+      itemCount: topics.length,
+      itemBuilder: (BuildContext context, int idx) {
+        Topic topic = topics[idx];
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 10, left: 10),
+              child: Text(topic.title,
                   style: const TextStyle(
                     fontSize: 20,
                     color: Colors.deepOrangeAccent,
-                  )
-                ),
-              ),
-              QuizList(topic: topic),
-            ],
-          );
-        },
-        separatorBuilder: (BuildContext context, int idx) => const Divider(),
-      )
-
-    );
+                  )),
+            ),
+            QuizList(topic: topic),
+          ],
+        );
+      },
+      separatorBuilder: (BuildContext context, int idx) => const Divider(),
+    ));
   }
 }
 
@@ -53,13 +46,16 @@ class QuizList extends StatelessWidget {
       children: topic.quizzes.map(
         (quiz) {
           return Card(
-            shape:
-                const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(5))),
             elevation: 8,
             margin: const EdgeInsets.all(4),
             child: InkWell(
               onTap: () {
-
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context) =>
+                      QuizScreen(quizId: quiz.id),
+                ));
               },
               child: Container(
                 padding: const EdgeInsets.all(8),
