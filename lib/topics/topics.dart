@@ -3,7 +3,9 @@ import 'package:app1/services/models.dart';
 import 'package:app1/shared/bottom_nav.dart';
 import 'package:app1/shared/error.dart';
 import 'package:app1/shared/loading.dart';
+import 'package:app1/topics/topic_item.dart';
 import 'package:flutter/material.dart';
+import 'package:app1/topics/drawer.dart';
 
 class TopicsScreen extends StatelessWidget {
   const TopicsScreen({ Key? key }) : super(key: key);
@@ -28,12 +30,15 @@ class TopicsScreen extends StatelessWidget {
               backgroundColor: Colors.amber.shade800,
               title: const Text('Products'),
             ),
+
+            drawer: TopicDrawer(topics: topics),
+
             body: GridView.count(
               primary: false,
               padding: const EdgeInsets.all(10),
               crossAxisSpacing: 10,
               crossAxisCount: 2,
-              children: topics.map((topic) => Text(topic.title)).toList(),
+              children: topics.map((topic) => TopicItem(topic: topic)).toList(),
             ),
             bottomNavigationBar: const BottomNavBar(),
           );
@@ -43,10 +48,6 @@ class TopicsScreen extends StatelessWidget {
         }
       },
     );
-    
-    
-    
-    
-     //Scaffold(      bottomNavigationBar: BottomNavBar(),);
+
   }
 }
