@@ -66,20 +66,25 @@ class TopicScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
       ),
-      body: ListView(
-        children: [
-          Hero(
-            tag: topic.img,
-            child: Image.asset('assets/products/${topic.img}',
-                width: MediaQuery.of(context).size.width),
+      body: Center(
+        child: SizedBox(
+          width: 700,
+          child: ListView(
+            children: [
+              Hero(
+                tag: topic.img,
+                child: Image.asset('assets/products/${topic.img}',
+                    width: MediaQuery.of(context).size.width),
+              ),
+              Text(
+                topic.title,
+                style: const TextStyle(height: 2, fontSize: 20, color: Colors.deepOrangeAccent),
+                textAlign: TextAlign.center,
+              ),
+              QuizList(topic: topic)
+            ],
           ),
-          Text(
-            topic.title,
-            style: const TextStyle(height: 2, fontSize: 20, color: Colors.deepOrangeAccent),
-            textAlign: TextAlign.center,
-          ),
-          QuizList(topic: topic)
-        ],
+        ),
       ),
     );
   }

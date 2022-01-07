@@ -195,6 +195,7 @@ class QuestionPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: question.options.map((opt) {
               return Container(
+                width: 700,
                 height: 80,
                 margin: const EdgeInsets.only(bottom: 10),
                 color: Colors.black38,

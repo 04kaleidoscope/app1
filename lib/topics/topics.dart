@@ -33,12 +33,17 @@ class TopicsScreen extends StatelessWidget {
 
             drawer: TopicDrawer(topics: topics),
 
-            body: GridView.count(
-              primary: false,
-              padding: const EdgeInsets.all(10),
-              crossAxisSpacing: 10,
-              crossAxisCount: 2,
-              children: topics.map((topic) => TopicItem(topic: topic)).toList(),
+            body: Center(
+              child: SizedBox(
+                width: 700,
+                child: GridView.count(
+                  primary: false,
+                  padding: const EdgeInsets.all(10),
+                  crossAxisSpacing: 10,
+                  crossAxisCount: 2,
+                  children: topics.map((topic) => TopicItem(topic: topic)).toList(),
+                ),
+              ),
             ),
             bottomNavigationBar: const BottomNavBar(),
           );
