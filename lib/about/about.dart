@@ -1,13 +1,42 @@
+import 'package:app1/shared/shared.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+
+final FirebaseStorage _st = FirebaseStorage.instance;
+
+Future<String> downloadURLExample(img) async {
+  String downloadURL = await _st
+      .ref(img)
+      .getDownloadURL();
+      return downloadURL;
+}
 
 class AboutScreen extends StatelessWidget {
-  const AboutScreen({ Key? key }) : super(key: key);
-
+  const AboutScreen({Key? key}) : super(key: key);
+  final img = 'badly-drawn-thinking-emoji.png';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Image.network('https://www.pngkit.com/png/detail/381-3815811_9d5-badly-drawn-thinking-emoji.png')
+    return FutureBuilder(
+      future: downloadURLExample(img),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const LoadingScreen();
+        } else if (snapshot.hasError) {
+          return Center(
+            child: ErrorMessage(message: snapshot.error.toString()),
+          );
+        } else if (snapshot.hasData) {
+          return Scaffold(
+              appBar: AppBar(
+                backgroundColor: Colors.redAccent,
+                title: const Text('firequiz_'),
+              ),
+              body: Image.network(snapshot.data.toString())
+              );
+        } else {
+          return const Text('no topics in firestore, check db');
+        }
+      },
     );
   }
 }
