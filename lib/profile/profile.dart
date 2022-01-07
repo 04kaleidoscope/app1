@@ -25,6 +25,8 @@ class ProfileScreen extends StatelessWidget {
               const Spacer(),
               Text('user: ${user.displayName ?? 'anonymous'}',
                   style: Theme.of(context).textTheme.headline5),
+              Text(user.email ?? '',
+                  style: Theme.of(context).textTheme.caption),
               const Spacer(),
               Text('quizzes completed: ${report.total}',
                   style: Theme.of(context).textTheme.headline5),
