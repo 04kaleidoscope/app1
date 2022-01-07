@@ -5,10 +5,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 final FirebaseStorage _st = FirebaseStorage.instance;
 
 Future<String> downloadURLExample(img) async {
-  String downloadURL = await _st
-      .ref(img)
-      .getDownloadURL();
-      return downloadURL;
+  String downloadURL = await _st.ref(img).getDownloadURL();
+  return downloadURL;
 }
 
 class AboutScreen extends StatelessWidget {
@@ -31,8 +29,11 @@ class AboutScreen extends StatelessWidget {
                 backgroundColor: Colors.redAccent,
                 title: const Text('firequiz_'),
               ),
-              body: Image.network(snapshot.data.toString())
-              );
+              body: Center(
+                  child: SizedBox(
+                      height: 500,
+                      width: 500,
+                      child: Image.network(snapshot.data.toString()))));
         } else {
           return const Text('no topics in firestore, check db');
         }
