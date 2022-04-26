@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 var appTheme = ThemeData(
-
   fontFamily: GoogleFonts.sourceCodePro().fontFamily,
-
   brightness: Brightness.dark,
   textTheme: const TextTheme(
     bodyText1: TextStyle(fontSize: 18),
@@ -21,7 +19,7 @@ var appTheme = ThemeData(
     ),
   ),
   buttonTheme: const ButtonThemeData(),
-    bottomAppBarTheme: const BottomAppBarTheme(
-      color: Colors.black87,
-    ),
+  bottomAppBarTheme: const BottomAppBarTheme(
+    color: Colors.black87,
+  ),
 );

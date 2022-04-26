@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 // Import the firebase_core plugin
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -28,7 +29,9 @@ class _AppState extends State<myApp> {
   /// The future is part of the state of our widget. We should not call `initializeApp`
   /// directly inside [build].
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
-
+  final Future<void> _initialization2 = FirebaseAppCheck.instance.activate(
+    webRecaptchaSiteKey: '6LfJp6AfAAAAAKfCmlZlwTHpf8J8erxlUZQHShOH',
+  );
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -37,29 +40,38 @@ class _AppState extends State<myApp> {
       builder: (context, snapshot) {
         // Check for errors
         if (snapshot.hasError) {
-        return const Directionality(
-          textDirection: TextDirection.ltr,
-          child: Text('unable to connect with firebase'),
+          return const Directionality(
+            textDirection: TextDirection.ltr,
+            child: Text('unable to connect with firebase'),
           );
         }
 
         // Once complete, show your application
         if (snapshot.connectionState == ConnectionState.done) {
-        return StreamProvider(
-          create: (_) => FirestoreService().streamReport(),
-          initialData: Report(),
-          child: MaterialApp(
-            routes: appRoutes,
-            theme: appTheme,
-          ),
-        );
-        }
+          return FutureBuilder(
+              future: _initialization2,
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return Directionality(
+                      textDirection: TextDirection.ltr,
+                      child: Text(snapshot.error.toString()));
+                }
 
+                return StreamProvider(
+                  create: (_) => FirestoreService().streamReport(),
+                  initialData: Report(),
+                  child: MaterialApp(
+                    routes: appRoutes,
+                    theme: appTheme,
+                  ),
+                );
+              });
+        }
         // Otherwise, show something whilst waiting for initialization to complete
         return const Directionality(
           textDirection: TextDirection.ltr,
           child: Text('loading...'),
-          );
+        );
       },
     );
   }

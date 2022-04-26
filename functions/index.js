@@ -1,10 +1,12 @@
 const functions = require('firebase-functions');
 const nodemailer = require('nodemailer');
-
+var serviceAccount = require("./test_credentials.json");
 //to do once billing enabled: firebase functions:config:set gmail.email="myusername@gmail.com" gmail.password="secretpassword"
 
-const gmailEmail = functions.config().gmail.email;
-const gmailPassword = functions.config().gmail.password;
+const gmailEmail = serviceAccount.login;
+//functions.config().gmail.email;
+const gmailPassword = serviceAccount.password;
+//functions.config().gmail.password;
 const mailTransport = nodemailer.createTransport({
   service: 'gmail',
   auth: {
